@@ -1,0 +1,46 @@
+#splash {
+  background-image: url('/assets/splash.jpg');
+  height: 100vh;
+  width: auto;
+  background-size: cover;
+  background-position: center;
+}
+
+#splash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  background-color: rgba(30, 30, 30, 0.8);
+  opacity: 0.8;
+  padding: 10px 20px;
+  h1 {
+    opacity: 1;
+    color: white;
+  }
+  ul {
+    list-style: none;
+    color: white;
+    font-weight: 700;
+    li {
+      display: inline;
+      margin: 14px;
+      font-size: 14px;
+      text-align: center;
+      padding: 5px;
+      transition: all 0.1s;
+    }
+    li:hover {
+      border-bottom: 2px solid white;
+      cursor: pointer;
+    }
+    #splash-sign-in {
+      padding: 10px 20px;
+      border: 2px solid white;
+      transition: all 0.1s;
+    }
+    #splash-sign-in:hover {
+      background-color: rgba(30, 30, 30, 0.9);
+    }
+  }
+}
