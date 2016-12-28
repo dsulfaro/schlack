@@ -9,9 +9,8 @@ const Root = ({ store }) => (
   <Provider store={ store }>
     <Router history={ hashHistory }>
       <Route component={ App } >
-        <Route path='/' component={SplashContainer}>
-
-        </Route>
+        <Route path='/' component={SplashContainer} />
+        <Route path='/messages' />
       </Route>
     </Router>
   </Provider>
