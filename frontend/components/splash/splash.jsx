@@ -7,10 +7,19 @@ class Splash extends React.Component {
     super(props);
     this.state = {
       siOpen: false,
+      suOpen: false,
+      fname: "",
+      lname: "",
+      username: "",
+      password: ""
     }
     this.open_sign_up_form = this.open_sign_up_form.bind(this);
     this.close_sign_up_form = this.close_sign_up_form.bind(this);
     this.render_sign_up_form = this.render_sign_up_form.bind(this);
+    this.open_sign_in_form = this.open_sign_in_form.bind(this);
+    this.close_sign_in_form = this.close_sign_in_form.bind(this);
+    this.render_sign_in_form = this.render_sign_in_form.bind(this);
+    this.handle_sign_up = this.handle_sign_up.bind(this);
   }
 
   componentWillMount() {
@@ -18,25 +27,67 @@ class Splash extends React.Component {
   }
 
   open_sign_up_form() {
-    this.setState({siOpen: true});
+    this.setState({suOpen: true});
   }
 
   close_sign_up_form() {
-    this.setState({siOpen: false});
+    this.setState({suOpen: false});
+  }
+
+  update(field) {
+    return e => this.setState({ [field]: e.currentTarget.value });
+  }
+
+  handle_sign_up(e) {
+    e.preventDefault();
+    const user = {"username": this.state.username,
+                  "password": this.state.password,
+                  "fname": this.state.fname,
+                  "lname": this.state.lname };
+    this.props.signup(user);
   }
 
   render_sign_up_form() {
     return (
       <Modal
+        className="auth-modal"
+        isOpen={this.state.suOpen}
+        contentLabel="Sign Up Form"
+        >
+        <h2 onClick={this.close_sign_up_form} className="auth-form-cancel">x</h2>
+        <form id="sign-up-form">
+          <h1>sign up</h1>
+          <input type="text" placeholder="first name" onChange={this.update("fname")}></input>
+          <input type="text" placeholder="last name" onChange={this.update("lname")}></input>
+          <input type="text" placeholder="username" onChange={this.update("username")}></input>
+          <input type="password" placeholder="password" onChange={this.update("password")}></input>
+          <button className="auth-button" onClick={this.handle_sign_up}>Sign Up</button>
+        </form>
+      </Modal>
+    )
+  }
+
+  open_sign_in_form() {
+    this.setState({siOpen: true});
+  }
+
+  close_sign_in_form() {
+    this.setState({siOpen: false});
+  }
+
+  render_sign_in_form() {
+    return (
+      <Modal
+        className="auth-modal"
         isOpen={this.state.siOpen}
         contentLabel="Sign Up Form"
         >
+        <h2 onClick={this.close_sign_in_form} className="auth-form-cancel">x</h2>
         <form id="sign-up-form">
-          <h1 onClick={this.close_sign_up_form}>Hello</h1>
-          <input type="text" placeholder="First Name"></input>
-          <input type="text" placeholder="Last Name"></input>
-          <input type="text" placeholder="Username"></input>
-          <input type="text" placeholder="Password"></input>
+          <h1>welcome back</h1>
+          <input type="text" placeholder="username" onChange={this.update("username")}></input>
+          <input type="password" placeholder="password" onChange={this.update("password")}></input>
+          <button className="auth-button">Sign In</button>
         </form>
       </Modal>
     )
@@ -52,7 +103,7 @@ class Splash extends React.Component {
           <li>Support</li>
           <li>Create a new team</li>
           <li>Find your team</li>
-          <li id="splash-sign-in">Sign in</li>
+          <li id="splash-sign-in" onClick={this.open_sign_in_form}>Sign in</li>
         </ul>
       </header>
     )
@@ -61,7 +112,8 @@ class Splash extends React.Component {
   render_footer() {
     return (
       <footer id="splash-footer">
-        <p id="splash-sign-up" onClick={this.open_sign_up_form}>Sign Up</p>
+        <p className="splash-sign-up" onClick={this.open_sign_up_form}>Sign Up</p>
+        <p className="splash-sign-up">Guest Login</p>
       </footer>
     )
   }
@@ -70,8 +122,10 @@ class Splash extends React.Component {
     return (
       <div id="splash">
         { this.render_header() }
-        <h1 id="test">Shlack</h1>
-        { this.render_sign_up_form() }
+        <div id="modal-container">
+          { this.render_sign_up_form() }
+          { this.render_sign_in_form() }
+        </div>
         { this.render_footer() }
       </div>
     )
