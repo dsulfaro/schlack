@@ -6,6 +6,7 @@ import { hashHistory } from 'react-router';
 export default ({ getState, dispatch }) => next => action => {
 
   const successCallback = user => {
+    hashHistory.push('/dashboard');
     dispatch(receiveCurrentUser(user));
   };
 
@@ -18,7 +19,7 @@ export default ({ getState, dispatch }) => next => action => {
       login(action.user, successCallback, errorCallback);
       return next(action);
     case LOGOUT:
-      logout(successCallback, errorCallback);
+      logout(errorCallback);
       return next(action);
     case SIGNUP:
       signup(action.user, successCallback, errorCallback);

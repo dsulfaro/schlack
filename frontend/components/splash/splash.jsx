@@ -20,6 +20,7 @@ class Splash extends React.Component {
     this.close_sign_in_form = this.close_sign_in_form.bind(this);
     this.render_sign_in_form = this.render_sign_in_form.bind(this);
     this.handle_sign_up = this.handle_sign_up.bind(this);
+    this.handle_login = this.handle_login.bind(this);
   }
 
   componentWillMount() {
@@ -75,6 +76,15 @@ class Splash extends React.Component {
     this.setState({siOpen: false});
   }
 
+  handle_login(e) {
+    e.preventDefault();
+    const user = {
+      "username": this.state.username,
+      "password": this.state.password
+    }
+    this.props.login(user);
+  }
+
   render_sign_in_form() {
     return (
       <Modal
@@ -87,7 +97,7 @@ class Splash extends React.Component {
           <h1>welcome back</h1>
           <input type="text" placeholder="username" onChange={this.update("username")}></input>
           <input type="password" placeholder="password" onChange={this.update("password")}></input>
-          <button className="auth-button">Sign In</button>
+          <button className="auth-button" onClick={this.handle_login}>Sign In</button>
         </form>
       </Modal>
     )
