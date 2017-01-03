@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import BotContainer from './bot/bot_container';
 
 class Splash extends React.Component {
 
@@ -136,6 +137,7 @@ class Splash extends React.Component {
           { this.render_sign_up_form() }
           { this.render_sign_in_form() }
         </div>
+        <BotContainer />
         { this.render_footer() }
       </div>
     )
