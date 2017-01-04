@@ -22,6 +22,7 @@ class Splash extends React.Component {
     this.render_sign_in_form = this.render_sign_in_form.bind(this);
     this.handle_sign_up = this.handle_sign_up.bind(this);
     this.handle_login = this.handle_login.bind(this);
+    this.handle_guest = this.handle_guest.bind(this);
   }
 
   componentWillMount() {
@@ -96,12 +97,20 @@ class Splash extends React.Component {
         <h2 onClick={this.close_sign_in_form} className="auth-form-cancel">x</h2>
         <form id="sign-up-form">
           <h1>welcome back</h1>
-          <input type="text" placeholder="username" onChange={this.update("username")}></input>
-          <input type="password" placeholder="password" onChange={this.update("password")}></input>
+          <input type="text" placeholder="username" onChange={this.update("username")} id="siu"></input>
+          <input type="password" placeholder="password" onChange={this.update("password")} id="sip"></input>
           <button className="auth-button" onClick={this.handle_login}>Sign In</button>
         </form>
       </Modal>
     )
+  }
+
+  handle_guest(e) {
+    const guest = {
+      "username": "guest",
+      "password": "123456"
+    }
+    this.props.login(guest);
   }
 
   render_header() {
@@ -124,7 +133,7 @@ class Splash extends React.Component {
     return (
       <footer id="splash-footer">
         <p className="splash-sign-up" onClick={this.open_sign_up_form}>Sign Up</p>
-        <p className="splash-sign-up">Guest Login</p>
+        <p className="splash-sign-up" onClick={this.handle_guest}>Guest Login</p>
       </footer>
     )
   }
