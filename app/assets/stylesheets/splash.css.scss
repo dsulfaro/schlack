@@ -71,10 +71,128 @@
 #splash-chat {
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
   .splash-message {
+    opacity: 0;
+    margin: 10px;
+    padding: 15px;
     width: 600px;
+    height: 82px;
     background-color: white;
     align-self: center;
-    border-radius: 15px;
+    box-shadow: 3px 3px 20px black;
+    .bot-message-header {
+      display: flex;
+      p { margin-left: 20px; color: #444; }
+      .bot-message-time {
+        color: #999;
+      }
+      .bot-name {
+        background-color: #2d9ee0;
+        border-radius: 100px;
+        height: 40px;
+        width: 40px;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
   }
+  h3 {
+    margin: 5px;
+    color: #333;
+  }
+}
+
+#bot0 {
+  animation-name: slide0;
+  animation-duration: 20s;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+
+#bot1 {
+  animation-name: slide1;
+  animation-duration: 16s;
+  animation-delay: 6s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+
+#bot2 {
+  animation-name: slide2;
+  animation-duration: 12s;
+  animation-delay: 10s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+
+#bot3 {
+  animation-name: slide3;
+  animation-duration: 8s;
+  animation-delay: 14s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+
+#bot4 {
+  animation-name: slide4;
+  animation-duration: .3s;
+  animation-delay: 18s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+
+@keyframes slide0 {
+  0% { transform: translateY(528px); }
+  2% { opacity: 1; }
+  18% { transform: translateY(528px); opacity: 1; }
+  20% { transform: translateY(396px); opacity: 1; }
+  38% { transform: translateY(396px); opacity: 1; }
+  40% { transform: translateY(264px); opacity: 1;}
+  58% { transform: translateY(264px); opacity: 1;}
+  60% { transform: translateY(132px); opacity: 1;}
+  78% { transform: translateY(132px); opacity: 1;}
+  80% { transform: translateY(0px); opacity: 1;}
+  98% { transform: translateY(0px); opacity: 1;}
+  100% { transform: translateY(0px); opacity: 1;}
+}
+
+@keyframes slide1 {
+  0% { transform: translateY(396px); }
+  2% { opacity: 1; }
+  22.5% { transform: translateY(396px); }
+  25% { transform: translateY(264px); opacity: 1; }
+  47.5% { transform: translateY(264px); opacity: 1; }
+  50% { transform: translateY(132px); opacity: 1; }
+  72.5% { transform: translateY(132px); opacity: 1; }
+  75% { transform: translateY(0px); opacity: 1; }
+  97.5% { transform: translateY(0px); opacity: 1; }
+  100% { transform: translateY(0px); opacity: 1; }
+}
+
+@keyframes slide2 {
+  0% { transform: translateY(264px); }
+  2% { opacity: 1; }
+  30.09% { transform: translateY(264px); opacity: 1; }
+  33.3% { transform: translateY(132px); opacity: 1; }
+  63.5% { transform: translateY(132px); opacity: 1; }
+  66.6% { transform: translateY(0px); opacity: 1; }
+  96.5% { transform: translateY(0px); opacity: 1; }
+  100% { transform: translateY(0px); opacity: 1; }
+}
+
+@keyframes slide3 {
+  0% { transform: translateY(132px); }
+  2% { opacity: 1; }
+  45% { transform: translateY(132px); opacity: 1; }
+  50% { transform: translateY(0px); opacity: 1; }
+  95% { transform: translateY(0px); opacity: 1; }
+  100% { transform: translateY(0px); opacity: 1; }
+}
+
+@keyframes slide4 {
+  to { opacity: 1; }
 }
