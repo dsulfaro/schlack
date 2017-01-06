@@ -23,10 +23,23 @@ class Splash extends React.Component {
     this.handle_sign_up = this.handle_sign_up.bind(this);
     this.handle_login = this.handle_login.bind(this);
     this.handle_guest = this.handle_guest.bind(this);
+    this.render_errors = this.render_errors.bind(this);
   }
 
   componentWillMount() {
     Modal.setAppElement('body');
+  }
+
+  render_errors() {
+    if (this.props.errors.length > 0) {
+      return (
+        <ul>
+          {this.props.errors.map((err, i) => {
+            return <li key={i}>{err}</li>
+          })}
+        </ul>
+      )
+    }
   }
 
   open_sign_up_form() {
@@ -60,6 +73,7 @@ class Splash extends React.Component {
         <h2 onClick={this.close_sign_up_form} className="auth-form-cancel">x</h2>
         <form id="sign-up-form">
           <h1>sign up</h1>
+          { this.render_errors() }
           <input type="text" placeholder="first name" onChange={this.update("fname")}></input>
           <input type="text" placeholder="last name" onChange={this.update("lname")}></input>
           <input type="text" placeholder="username" onChange={this.update("username")}></input>
