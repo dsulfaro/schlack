@@ -1,12 +1,14 @@
 import React from 'react';
 import { RECEIVE_CURRENT_USER,
-         RECEIVE_ERRORS,
+         RECEIVE_SIERRORS,
+         RECEIVE_SUERRORS,
          LOGOUT } from '../actions/session_actions';
 import merge from 'lodash/merge';
 
 const __defaultState = {
   currentUser: null,
-  errors: []
+  sierrors: [],
+  suerrors: []
 };
 
 const SessionReducer = (state = __defaultState, action) => {
@@ -14,8 +16,10 @@ const SessionReducer = (state = __defaultState, action) => {
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
       return merge({}, {currentUser: action.currentUser, errors: [] });
-    case RECEIVE_ERRORS:
-      return merge({}, state, {errors: action.errors});
+    case RECEIVE_SIERRORS:
+      return merge({}, state, {sierrors: action.errors});
+    case RECEIVE_SUERRORS:
+      return merge({}, state, {suerrors: action.errors});
     case LOGOUT:
       return merge({}, __defaultState);
     default:
