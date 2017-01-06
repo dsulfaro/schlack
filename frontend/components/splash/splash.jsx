@@ -30,11 +30,20 @@ class Splash extends React.Component {
     Modal.setAppElement('body');
   }
 
-  render_errors() {
-    if (this.props.errors.length > 0) {
+  render_errors(type) {
+    if (type === "si") {
       return (
         <ul>
-          {this.props.errors.map((err, i) => {
+          {this.props.siErrors.map((err, i) => {
+            return <li key={i}>{err}</li>
+          })}
+        </ul>
+      )
+    }
+    else if (type === "su") {
+      return (
+        <ul>
+          {this.props.suErrors.map((err, i) => {
             return <li key={i}>{err}</li>
           })}
         </ul>
@@ -73,7 +82,7 @@ class Splash extends React.Component {
         <h2 onClick={this.close_sign_up_form} className="auth-form-cancel">x</h2>
         <form id="sign-up-form">
           <h1>sign up</h1>
-          { this.render_errors() }
+          { this.render_errors("su") }
           <input type="text" placeholder="first name" onChange={this.update("fname")}></input>
           <input type="text" placeholder="last name" onChange={this.update("lname")}></input>
           <input type="text" placeholder="username" onChange={this.update("username")}></input>
@@ -111,6 +120,7 @@ class Splash extends React.Component {
         <h2 onClick={this.close_sign_in_form} className="auth-form-cancel">x</h2>
         <form id="sign-up-form">
           <h1>welcome back</h1>
+          { this.render_errors("si") }
           <input type="text" placeholder="username" onChange={this.update("username")} id="siu"></input>
           <input type="password" placeholder="password" onChange={this.update("password")} id="sip"></input>
           <button className="auth-button" onClick={this.handle_login}>Sign In</button>
