@@ -35,7 +35,7 @@ class Splash extends React.Component {
       return (
         <ul>
           {this.props.siErrors.map((err, i) => {
-            return <li key={i}>{err}</li>
+            return <li key={i} className="errors">{err}</li>
           })}
         </ul>
       )
@@ -44,7 +44,16 @@ class Splash extends React.Component {
       return (
         <ul>
           {this.props.suErrors.map((err, i) => {
-            return <li key={i}>{err}</li>
+            if (err === "Fname can't be blank") {
+              return <li key={i} className="errors">First name can't be blank</li>
+            }
+            else if (err === "Lname can't be blank") {
+              return <li key={i} className="errors">Last name can't be blank</li>
+
+            }
+            else {
+              return <li key={i} className="errors">{err}</li>
+            }
           })}
         </ul>
       )
